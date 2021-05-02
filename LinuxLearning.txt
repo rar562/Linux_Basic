@@ -1,0 +1,224 @@
+COMMAND LINE
+------------------------------------------------------------------------------------------------------------------------------------------------------
+	Command line (baris perintah) adalah interface pada sistem operasi berbasis teks. Dengan mengetik sebuah perintah kemudian mendapatkan output
+dari komputer sesuai perintah. CLI (Command Line Interface) lebih fleksibel daripada GUI seperti dalam hal memanipulasi data dan manajemen file.
+
+SHELL
+------------------------------------------------------------------------------------------------------------------------------------------------------
+	Shell adalah interface antara user dengan sistem operasi. Shell berfungsi untuk menerjemahkan perintah dari user yang kemudian 
+menginstruksikan sistem operasi untuk menjalankan perintah tersebut. Jadi, ketika kita mengetik perintah di command line, shell akan mengartikan lalu
+menyuruh sistem operasi untuk menjalankannya.
+
+DASAR PERINTAH SHELL
+------------------------------------------------------------------------------------------------------------------------------------------------------
+	1. pwd --> singkatan dari Print Working Directory. Akan memberi output dimana direktori kita sekarang.
+	2. ls [options] [options] / ls [file/folder] --> Untuk menunjukkan list isi dari direktori anda sekarang. 
+		a. ls -l --> Menunjukkan list yang panjang berisi informasi file, yaitu 9 karakter permission dari file, nama file, dan lain - lain.
+		b. ls /etc --> Tidak menunjukkan direktori yang ada, namun konten dari direktori.
+		c. ls -l /etc --> Menunjukkan list panjang berisi informasi dan konten dari direktori.
+		d. ls -a --> Menunjukkan list file sekaligus hidden file
+	3. cd [location] --> singkatan dari change directory, berfungsi untuk berpindah ke lokasi tertentu.
+	4. man [option] --> adalah perintah untuk menunjukkan penjelasan tentang suatu perintah. Contoh man ls akan menjelaskan tentang perintah ls.
+	5. mkdir [option]<nama direktori> --> singkatan dari make directory, berfungsi untuk membuat direktori baru.
+	6. rmdir [option]<nama direktori> --> Untuk menghapus suatu direktori.
+	7. touch <nama> --> Untuk membuat file baru yang kosong.
+	8. cp <nama> --> Untuk meng-copy suatu file.
+	9. mv <nama> --> Untuk memindahkan suatu file.
+	10. rm <nama> --> Untuk menghapus suatu file.
+
+WILDCART
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+	1. <char>* --> Untuk menunjuk file dengan character awal file sesuai degan character sebelum *. Contoh ls b* akan menampilkan list file dengan
+			huruf awal b.
+	2. ?
+	3. [] --> Akan menunjuk file dengan huruf pada []. Contoh ls [bt]* akan menampilkan list dengan huruf awal b dan t. 
+
+PERMISSION
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+	Di dalam file, kita bisa melakukan tiga hal, yaitu 
+		a. read (r), kita bisa melihat file.
+		b. write (w), kita bisa mengubah file. 
+		c. execute (x), kita bisa mengeksekusi atau menjalankan file.
+	
+	Pada setiap file, terdapat tiga orang yang dapat perijinan dari file, yaitu
+		a. user, pemilik dari file.
+		b. group, grup pemilik dari file.
+		c. others, seseorang yang bukan dari grup atau orang lain.
+
+	Untuk dapat mengubah perijinan, kita dapat menggunakan perintah chmod [permisson][file]. Contoh chmod g+r(menambah perijinan pada 
+group) atau chmod u-x(menghilangkan perijinan execute pada user). 
+	
+	Kita juga bisa mengubah permission dengan menggunakan angka, contohnya chmod 755.
+
+			
+		Octal	Binary
+		0	0 0 0
+		1	0 0 1
+		2	0 1 0
+		3	0 1 1
+		4	1 0 0
+		5	1 0 1
+		6	1 1 0
+		7	1 1 1
+
+	Tabel diatas adalah panduan untuk menggunakan chmod. Jika kita memberi perintah chmod 755, artinya user memiliki perijinan rwx, group rx, dan 
+others rx.
+
+FILTERS
+------------------------------------------------------------------------------------------------------------------------------------------------------
+	Filters ini sama halnya seperti perintah cat, namun kita bisa memfilter mana yang kita ingin inputkan. Juga kita bisa mengubah suatu data 
+dari terminal.
+
+	1. head [jumlah yang diprint][file] --> menampilkan konten file dari atas.
+	2. tail [jumlah yang diprint][file] --> meanmpilkan konten file dari bawah.
+	3. sort [options][file] --> mengurutkan konten berdasarkan abjad.
+	4. nl [options][file] --> diberi penomoran
+	5. wc [options][file] --> untuk menghitung jumlah char/baris/kata. 
+		a. wc -l[file] --> menghitung baris.
+		b. wc -w[file] --> menghitung kata.
+		c. wc -m[file] --> menghitung char.
+	6. cut [options][file] --> Contoh cut f 1 -d ' ' [data] akan menampilkan hanya pada kolom pertama.
+	7. sed <expression>[file] --> expression : s/search/replace/g. Digunakan untuk mengganti suatu kata.
+	8. uniq [options][file] --> Untuk menghilangkan duplikasi konten.
+	9. tac [file] --> Untuk membalik urutan konten.
+
+ BASH SCRIPT
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+	Bash script merupakan script yang mirip seperti bahasa pemrograman, akan tetapi hanya melakukan perintah while loop, for loop, if statement,
+dan perintah sederhana lainnya.
+
+VARIABLE
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+	Variabel adalah tempat untuk menyimpan suatu data di memori komputer. Namun, variabel tersebut akan hilang apabila script dijalankan.
+Untuk membuat sebuah variable bisa dilihat dibawah ini :
+		
+			nama = "muhammad"
+			echo "siapa namamu?" $nama
+			output : siapa namamu? muhammad
+	Untuk membuat variabel selalu ditambah dengan "$".
+
+INPUT
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+	Pada bash script, kita bisa meminta input dari user. Contoh :
+			
+			echo "siapa namamu?"
+			read nama
+			echo "Namaku adalah $nama"
+			output : 
+				siapa namamu?
+				> rhobith
+				Namaku adalah rhobith
+
+OPERATIONS
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+	Pada bash scripting, kita bisa melakukan operasi matematika, seperti :
+		1. \* --> operasi perkalian
+		2. + --> operasi pertambahan
+		3. - --> operasi pengurangan
+		4. / --> operasi pembagian
+		5. ++ --> increment
+		6. -- --> decrement
+		7. % --> modulus
+
+	- let
+	 ex : 
+		var1=3
+		var2=2
+		let hasil=var1*var2
+		echo $hasil
+		output : 6
+
+	- expr
+	 ex : 
+		var1=1
+		var2=2
+		expr $var1+$var2
+		output : 3
+
+BOOLEAN EXSPRESSION
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+	-> &&, operasi AND
+	-> ||, operasi OR
+
+COMPARE STRING AND NUMBER
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+	1. STRING 
+		a. == --> sama dengan (equals)
+		b. != --> tidak sama dengan (not equals)
+		c. > --> lebih besar dari
+		d. < --> lebih kecil dari
+		e. >= --> lebih besar dari sama dengan
+		f. <= --> lebih kecil dari sama dengan
+
+	2. NUMBER
+		a. eq --> sama dengan (equals)
+		b. ne --> tidak sama dengan (not equals)
+		c. gt --> lebih besar dari
+		d. ge --> lebih kecil dari
+		e. lt --> lebih besar dari sama dengan
+		f. le --> lebih kecil dari sama dengan
+
+IF-ELSE STATEMENT
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+	Contoh if-else statement pada bash script :
+		
+		echo "Berapa umurmu?"
+		read umur
+		
+		if [%umur -ge 18]
+		then
+			echo "Anda tidak boleh menikah"
+		else 
+			echo "Anda boleh menikah"
+		fi
+	output :
+		Berapa umurmu?
+		> 19
+		Anda boleh menikah
+
+LOOPING
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+	1. For Looping
+
+		Contoh :
+		
+			for value in {1..4}
+			do
+				echo "For Looping $value"
+			done
+		
+			echo "Selesai"
+
+		output :
+			For Looping 1
+			For Looping 2
+			For Looping 3
+			For Looping 4
+			Selesai		
+
+	2. While Looping
+
+		Contoh :
+		
+			count=0
+			while [$count ne 5]
+			do
+				echo "While LOoping $count"
+				((count++))
+			done
+		output :
+			While LOoping 0
+			While LOoping 1
+			While LOoping 2
+			While LOoping 3
+			While LOoping 4
+
+ARRAY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+	Pada bash script, kita bisa membuat array. Contohnya : 
+
+		sister={"Bila", "Zila", "Fisah"}
+		echo ${sister[0]} //Bila
+		echo ${sister[1]} //Zila
+		echo ${sister[2]} //Fisah
+		echo ${sister[*]} //3 
